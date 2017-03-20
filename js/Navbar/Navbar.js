@@ -13,7 +13,7 @@ const Navbar = React.createClass({
     return (
       <div>
         <AppBar
-          title='Caption Finder'
+          title='vSubs'
           showMenuIconButton={false}
           >
           <Route component={(props) => <VideoSearch {...props}
