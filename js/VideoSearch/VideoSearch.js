@@ -60,7 +60,8 @@ const VideoSearch = React.createClass({
         part: 'id,snippet',
         type: 'video',
         q: this.state.inputValue,
-        maxResults: '50'
+        maxResults: '50',
+        videoCaption: 'closedCaption'
       }
       YoutubeClient.search(params, function (error, results) {
         if (error) return console.log(error)

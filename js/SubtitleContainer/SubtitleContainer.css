@@ -1,0 +1,32 @@
+.subs-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 30px;
+  height: 0;
+  overflow-y: scroll;
+  display: flex;
+  justify-content: center;
+  line-height: .8;
+  font-size: 1.36em;
+}
+
+.sub-controls {
+  height: 44px !important;
+}
+
+.subs-wrap {
+  width: 94%;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.phrase {
+  display:flex;
+  align-items: center;
+}
+
+.phrase p:first-child {
+  color: #aaa;
+  font-size: 14px;
+  padding-right: 7px;
+}
