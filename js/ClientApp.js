@@ -5,6 +5,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import Navbar from './Navbar/Navbar'
 import Home from './Home/Home'
 import YoutubePlayer from './YoutubePlayer/YoutubePlayer'
+import SubtitleContainer from './SubtitleContainer/SubtitleContainer'
 import '../public/normalize.css'
 import '../public/style.css'
 
@@ -13,7 +14,7 @@ const App = React.createClass({
     return (
       <Router>
         <MuiThemeProvider>
-          <div>
+          <div className='app-wrap'>
             <Navbar />
             <Route
               exact path='/'
@@ -22,6 +23,10 @@ const App = React.createClass({
             <Route
               path='/:id'
               component={YoutubePlayer}
+              />
+            <Route
+              path='/:id'
+              component={SubtitleContainer}
               />
           </div>
         </MuiThemeProvider>

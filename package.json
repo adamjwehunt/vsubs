@@ -16,9 +16,14 @@
   },
   "dependencies": {
     "axios": "^0.15.3",
+    "body-parser": "^1.17.1",
+    "cheerio": "^0.22.0",
+    "cors": "^2.8.1",
     "express": "^4.15.2",
     "history": "^4.6.1",
     "lodash": "^4.17.4",
+    "massive": "^2.6.0",
+    "material-design-icons": "^3.0.1",
     "material-ui": "^0.17.1",
     "preact": "^7.2.0",
     "preact-compat": "^3.14.2",
@@ -28,7 +33,8 @@
     "react-router": "4.0.0",
     "react-tap-event-plugin": "^2.0.1",
     "redux": "^3.6.0",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "request": "^2.81.0"
   },
   "devDependencies": {
     "babel-core": "6.16.0",
@@ -65,7 +71,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/btholt/complete-intro-to-react.git"
+    "url": "git+https://github.com/ajwehunt/vsubs"
   },
   "keywords": [
     "react",
@@ -74,7 +80,7 @@
     "redux"
   ],
   "bugs": {
-    "url": "https://github.com/btholt/complete-intro-to-react/issues"
+    "url": "https://github.com/ajwehunt/vsubs/issues"
   },
-  "homepage": "https://github.com/btholt/complete-intro-to-react#readme"
+  "homepage": "https://github.com/ajwehunt/vsubs#readme"
 }
