@@ -3,18 +3,19 @@ import Paper from 'material-ui/Paper'
 import SubsTools from '../SubsTools/SubsTools'
 import YoutubeSubs from '../YoutubeSubs/YoutubeSubs'
 import './SubsContainer.css'
-const { string } = React.PropTypes
+const { string, func } = React.PropTypes
 
 const SubsContainer = React.createClass({
   propTypes: {
-    params: string
+    params: string,
+    seekTo: func
   },
   render () {
     var subtitles
     var subsType = this.props.params.substr(0, 3)
     if (subsType === 'yt:') {
       subtitles = (
-        <YoutubeSubs id={this.props.params.slice(3)} />
+        <YoutubeSubs id={this.props.params.slice(3)} seekTo={this.props.seekTo} />
       )
     }
     return (

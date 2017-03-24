@@ -11,12 +11,22 @@ const MainContent = React.createClass({
       })
     })
   },
+  getInitialState () {
+    return {
+      seekTo: '0'
+    }
+  },
+  seekTo (startSeconds) {
+    this.setState({
+      seekTo: startSeconds
+    })
+  },
   render () {
     const { match } = this.props
     return (
       <div>
-        <VideoContainer params={match.params.id} />
-        <SubsContainer params={match.params.id} />
+        <VideoContainer params={match.params.id} seekTo={this.state.seekTo} />
+        <SubsContainer params={match.params.id} seekTo={this.seekTo} />
       </div>
     )
   }

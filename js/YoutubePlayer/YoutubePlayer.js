@@ -5,7 +5,8 @@ import './YoutubePlayer.css'
 
 const YoutubePlayer = React.createClass({
   propTypes: {
-    id: string
+    id: string,
+    seekTo: string
   },
   getInitialState () {
     return {
@@ -14,10 +15,13 @@ const YoutubePlayer = React.createClass({
   },
   _onReady (event) {
     this.setState({
-      seek: function () {
-        event.target.seekTo(12)
+      seek: function (seekSpot) {
+        event.target.seekTo(parseInt(seekSpot))
       }
     })
+  },
+  componentWillReceiveProps (nextProps) {
+    this.state.seek(nextProps.seekTo)
   },
   render () {
     return (

@@ -1,12 +1,12 @@
 import React from 'react'
 import { getYoutubeSubs } from '../services/youtubeSubsService.js'
-
 import './YoutubeSubs.css'
-const { string } = React.PropTypes
+const { string, func } = React.PropTypes
 
 const YoutubeSubs = React.createClass({
   propTypes: {
-    id: string
+    id: string,
+    seekTo: func
   },
   getInitialState () {
     return {
@@ -29,17 +29,21 @@ const YoutubeSubs = React.createClass({
       })
     }
   },
+  seekTo (startSeconds) {
+    this.props.seekTo(startSeconds)
+  },
   render () {
     var transcript = this.state.transcript.map((phrase) => {
+      let startSeconds = phrase.start[0]
       let date = new Date(null)
-      date.setSeconds(phrase.start[0])
-      let result = date.toISOString().substr(11, 8)
+      date.setSeconds(startSeconds)
+      let startTime = date.toISOString().substr(11, 8)
       if (date.toISOString().substr(11, 2) === '00') {
-        result = date.toISOString().substr(14, 5)
+        startTime = date.toISOString().substr(14, 5)
       }
       return (
-        <div key={phrase.start[0]} className='phrase'>
-          <p>{result}</p>
+        <div key={startTime} className='phrase' onClick={() => this.seekTo(startSeconds)} >
+          <p>{startTime}</p>
           <p>{phrase.subtitle}</p>
         </div>
       )

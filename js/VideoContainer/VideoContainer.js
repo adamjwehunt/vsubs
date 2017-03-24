@@ -6,14 +6,15 @@ const { string } = React.PropTypes
 
 const VideoContainer = React.createClass({
   propTypes: {
-    params: string
+    params: string,
+    seekTo: string
   },
   render () {
     var video
     var videoType = this.props.params.substr(0, 3)
     if (videoType === 'yt:') {
       video = (
-        <YoutubePlayer id={this.props.params.slice(3)} />
+        <YoutubePlayer id={this.props.params.slice(3)} seekTo={this.props.seekTo} />
       )
     }
     return (
