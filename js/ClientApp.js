@@ -4,8 +4,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import Navbar from './Navbar/Navbar'
 import Home from './Home/Home'
-import YoutubePlayer from './YoutubePlayer/YoutubePlayer'
-import SubtitleContainer from './SubtitleContainer/SubtitleContainer'
+import MainContent from './MainContent/MainContent'
 import '../public/normalize.css'
 import '../public/style.css'
 
@@ -22,11 +21,7 @@ const App = React.createClass({
               />
             <Route
               path='/:id'
-              component={YoutubePlayer}
-              />
-            <Route
-              path='/:id'
-              component={SubtitleContainer}
+              component={MainContent}
               />
           </div>
         </MuiThemeProvider>

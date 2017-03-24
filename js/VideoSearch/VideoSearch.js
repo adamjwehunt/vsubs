@@ -53,7 +53,7 @@ const VideoSearch = React.createClass({
       if (parsedUrl[1].indexOf('&') !== -1) {
         parsedUrl[1] = parsedUrl[1].slice(0, parsedUrl[1].indexOf('&'))
       }
-      return this.props.history.push(`${parsedUrl[1]}`)
+      return this.props.history.push(`yt:${parsedUrl[1]}`)
     } else {
       const YoutubeClient = YoutubeFinder.createClient({ key: this.props.apiKey })
       const params = {

@@ -16,10 +16,11 @@ const Navbar = React.createClass({
           title='vSubs'
           showMenuIconButton={false}
           >
-          <Route component={(props) => <VideoSearch {...props}
-            apiKey={config.youtubeApiKey}
-            callback={this.yourCallback}
-          />}
+          <Route component={(props) =>
+            <VideoSearch {...props}
+              apiKey={config.youtubeApiKey}
+              callback={this.yourCallback}
+            />}
           />
         </AppBar>
       </div>
