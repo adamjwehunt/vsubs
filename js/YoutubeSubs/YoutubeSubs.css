@@ -1,20 +1,32 @@
-.subs-container {
+#scroll-box {
+  background: #f6f6f6;
   position: relative;
-  padding-bottom: 56.25%;
-  padding-top: 30px;
-  height: 0;
+  height: 300px;
+  width: 100%;
   overflow-y: scroll;
-  line-height: .8;
-  font-size: 1.36em;
 }
 
-.phrase {
-  display:flex;
-  align-items: center;
+.phrase-btn {
+  text-align: left!important;
+  padding-left: 20px!important;
+  -webkit-user-select: all!important;  /* Chrome 49+ */
+  -moz-user-select: all!important;     /* Firefox 43+ */
+  -ms-user-select: all!important;      /* No support yet */
+  user-select: all!important;          /* Likely future */
+  margin: 5px 0!important;
+  height: initial!important;
 }
 
-.phrase p:first-child {
-  color: #aaa;
-  font-size: 14px;
-  padding-right: 7px;
+.start-time {
+  color: #aaa!important;
+  font-size: 14px!important;
+  padding-right: 10px!important;
+  -webkit-user-select: none!important;  /* Chrome 49+ */
+  -moz-user-select: none!important;     /* Firefox 43+ */
+  -ms-user-select: none!important;      /* No support yet */
+  user-select: none!important;          /* Likely future */
+}
+
+.active {
+  background-color: #333;
 }

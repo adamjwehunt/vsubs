@@ -24,10 +24,18 @@ const YoutubePlayer = React.createClass({
     this.state.seek(nextProps.seekTo)
   },
   render () {
+    const opts = {
+      height: '480',
+      width: '853',
+      playerVars: {
+        modestbranding: 1
+      }
+    }
     return (
       <YouTube
         videoId={this.props.id}
         onReady={this._onReady}
+        opts={opts}
       />
     )
   }

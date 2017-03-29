@@ -1,6 +1,7 @@
 import React from 'react'
 import VideoContainer from '../VideoContainer/VideoContainer'
 import SubsContainer from '../SubsContainer/SubsContainer'
+import './MainContent.css'
 const { shape, string } = React.PropTypes
 
 const MainContent = React.createClass({
@@ -13,7 +14,7 @@ const MainContent = React.createClass({
   },
   getInitialState () {
     return {
-      seekTo: '0'
+      seekTo: ' '
     }
   },
   seekTo (startSeconds) {
@@ -25,8 +26,14 @@ const MainContent = React.createClass({
     const { match } = this.props
     return (
       <div>
-        <VideoContainer params={match.params.id} seekTo={this.state.seekTo} />
-        <SubsContainer params={match.params.id} seekTo={this.seekTo} />
+        <VideoContainer
+          params={match.params.id}
+          seekTo={this.state.seekTo}
+        />
+        <SubsContainer
+          params={match.params.id}
+          seekTo={this.seekTo}
+        />
       </div>
     )
   }

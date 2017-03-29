@@ -3,7 +3,7 @@ import React from 'react'
 const Home = React.createClass({
   render () {
     return (
-      <div>
+      <div className='home-wrap'>
         <h3>welcome</h3>
       </div>
     )

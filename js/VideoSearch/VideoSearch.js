@@ -22,11 +22,13 @@ const VideoSearch = React.createClass({
     }
   },
   onUpdateInput (inputValue) {
-    this.setState({
-      inputValue: inputValue
-    }, function () {
-      this.performSearch()
-    })
+    if (this.isMounted()) {
+      this.setState({
+        inputValue: inputValue
+      }, function () {
+        this.performSearch()
+      })
+    }
   },
   performSearch () {
     const self = this

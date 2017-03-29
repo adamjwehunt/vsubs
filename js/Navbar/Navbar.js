@@ -11,7 +11,7 @@ const Navbar = React.createClass({
   },
   render () {
     return (
-      <div>
+      <div className='navbar'>
         <AppBar
           title='vSubs'
           showMenuIconButton={false}

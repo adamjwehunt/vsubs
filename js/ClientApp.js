@@ -13,16 +13,20 @@ const App = React.createClass({
     return (
       <Router>
         <MuiThemeProvider>
-          <div className='app-wrap'>
-            <Navbar />
+          <div>
+            <Navbar
+              className='navbar'
+            />
             <Route
               exact path='/'
               component={Home}
-              />
+              className='home-wrap'
+            />
             <Route
               path='/:id'
               component={MainContent}
-              />
+              className='content-wrap'
+            />
           </div>
         </MuiThemeProvider>
       </Router>
