@@ -40,6 +40,7 @@ const SubsContainer = React.createClass({
           id={params.slice(3)}
           seekTo={seekTo}
           subs={searchSubsResults}
+          hltdPhrases={[]}
           ref={(foo) => { this.foo = foo }}
         />
       )

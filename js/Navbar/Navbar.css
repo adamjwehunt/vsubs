@@ -1,4 +1,7 @@
 .navbar h1 {
   height: 48px!important;
   line-height: 60px!important;
+  -webkit-user-select: none;     
+  -moz-user-select: none;
+  -ms-user-select: none;
 }

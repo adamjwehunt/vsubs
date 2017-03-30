@@ -2,14 +2,14 @@ import React from 'react'
 import { getYoutubeSubs } from '../services/youtubeSubsService.js'
 import FlatButton from 'material-ui/FlatButton'
 import Highlighter from 'react-highlight-words'
+import Scroll from 'react-scroll'
 import latinize from 'latinize'
-// import $ from 'jquery'
 import './YoutubeSubs.css'
 const { string, func, array } = React.PropTypes
-var Scroll = require('react-scroll')
 
 var Element = Scroll.Element
 var scroller = Scroll.scroller
+var currentPhraseIndex = -1
 
 const YoutubeSubs = React.createClass({
   propTypes: {
@@ -19,9 +19,7 @@ const YoutubeSubs = React.createClass({
   },
   getInitialState () {
     return {
-      transcript: [],
-      hltdPhrases: [],
-      currentPhraseIndex: -1
+      transcript: []
     }
   },
   componentDidMount () {
@@ -39,62 +37,53 @@ const YoutubeSubs = React.createClass({
         })
       })
     }
+  },
+  componentDidUpdate () {
     if (document.body.querySelectorAll('.highlighted').length) {
-      var hltdElements = document.body.querySelectorAll('.highlighted')
-      var hltdPhrases = []
+      let hltdElements = document.body.querySelectorAll('.highlighted')
+      let hltdPhrases = []
       for (let i = 0; i < hltdElements.length; i++) {
         let phrase = hltdElements[i].parentNode.parentNode.parentNode.parentNode.parentNode.getAttribute('name')
         if (hltdPhrases.indexOf(phrase) === -1) {
           hltdPhrases.push(phrase)
         }
       }
-      this.setState({
-        hltdPhrases: hltdPhrases
-      })
-      console.log(this.state.hltdPhrases)
+      this.props.hltdPhrases.push(...hltdPhrases)
     }
-  },
-  componentWillUpdate () {
-  },
-  componentDidUpdate () {
   },
   seekTo (startSeconds) {
     this.props.seekTo(startSeconds)
   },
   toNextHltdPhrase () {
-    console.log('toNextHltdPhrase')
-    var hltdPhrases = this.state.hltdPhrases
-    var nextPhraseIndex = this.state.currentPhraseIndex + 1
-    this.setState({
-      currentPhraseIndex: nextPhraseIndex
-    })
+    var hltdPhrases = this.props.hltdPhrases
+    var nextPhraseIndex = currentPhraseIndex + 1
+    if (nextPhraseIndex === hltdPhrases.length) {
+      nextPhraseIndex = 0
+    }
     if (nextPhraseIndex > -1) {
-      console.log(this.state.hltdPhrases)
-      console.log(hltdPhrases[nextPhraseIndex])
       scroller.scrollTo(hltdPhrases[nextPhraseIndex], {
         duration: 100,
         delay: 50,
         smooth: true,
         containerId: 'scroll-box'
       })
+      currentPhraseIndex = nextPhraseIndex
     }
   },
   toPrevHltdPhrase () {
-    console.log('toPrevHltdPhrase')
-    var hltdPhrases = this.state.hltdPhrases
-    var prevPhraseIndex = this.state.currentPhraseIndex - 1
-    this.setState({
-      currentPhraseIndex: prevPhraseIndex
-    })
-
-    if (prevPhraseIndex > 0) {
-      console.log(hltdPhrases[prevPhraseIndex])
+    var hltdPhrases = this.props.hltdPhrases
+    var prevPhraseIndex = currentPhraseIndex - 1
+    if (prevPhraseIndex <= -1) {
+      prevPhraseIndex = hltdPhrases.length - 1
+    }
+    if (prevPhraseIndex >= 0) {
       scroller.scrollTo(hltdPhrases[prevPhraseIndex], {
         duration: 100,
         delay: 50,
         smooth: true,
         containerId: 'scroll-box'
       })
+      currentPhraseIndex = prevPhraseIndex
     }
   },
   render () {

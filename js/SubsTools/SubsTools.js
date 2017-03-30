@@ -41,14 +41,19 @@ const SubsTools = React.createClass({
             />
             <IconButton
               onClick={this.props.toNextHltdPhrase}
+              className='arrow'
             >
-              <i className='material-icons'>keyboard_arrow_down</i>
+              <i className='material-icons arrow'>keyboard_arrow_down</i>
             </IconButton>
             <IconButton
               onClick={this.props.toPrevHltdPhrase}
+              className='arrow'
             >
               <i className='material-icons'>keyboard_arrow_up</i>
             </IconButton>
+          </ToolbarGroup>
+          <ToolbarGroup>
+            <i className='material-icons'>menu</i>
           </ToolbarGroup>
         </Toolbar>
       </div>

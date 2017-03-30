@@ -3,6 +3,7 @@ import AutoComplete from 'material-ui/AutoComplete'
 import JSONP from 'jsonp'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 import YoutubeFinder from 'youtube-finder'
+import './VideoSearch.css'
 const { string, shape, func } = React.PropTypes
 
 injectTapEventPlugin()
@@ -79,6 +80,7 @@ const VideoSearch = React.createClass({
     return (
       <div>
         <AutoComplete
+          className='search-input'
           hintText='Search Youtube'
           dataSource={this.state.dataSource}
           onUpdateInput={this.onUpdateInput}
