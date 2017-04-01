@@ -9,13 +9,14 @@ const { string, func, array } = React.PropTypes
 
 var Element = Scroll.Element
 var scroller = Scroll.scroller
-var currentPhraseIndex = -1
+var currentHltdPhraseIndex, hltdElements, hltdPhrases, transcript
 
 const YoutubeSubs = React.createClass({
   propTypes: {
     id: string,
     seekTo: func,
-    subs: array
+    subs: array,
+    hltdPhrases: array
   },
   getInitialState () {
     return {
@@ -39,8 +40,9 @@ const YoutubeSubs = React.createClass({
     }
   },
   componentDidUpdate () {
-    if (document.body.querySelectorAll('.highlighted').length) {
-      let hltdElements = document.body.querySelectorAll('.highlighted')
+    hltdElements = document.body.querySelectorAll('.highlighted')
+    if (hltdElements.length) {
+      currentHltdPhraseIndex = -1
       let hltdPhrases = []
       for (let i = 0; i < hltdElements.length; i++) {
         let phrase = hltdElements[i].parentNode.parentNode.parentNode.parentNode.parentNode.getAttribute('name')
@@ -55,39 +57,72 @@ const YoutubeSubs = React.createClass({
     this.props.seekTo(startSeconds)
   },
   toNextHltdPhrase () {
-    var hltdPhrases = this.props.hltdPhrases
-    var nextPhraseIndex = currentPhraseIndex + 1
-    if (nextPhraseIndex === hltdPhrases.length) {
-      nextPhraseIndex = 0
-    }
-    if (nextPhraseIndex > -1) {
-      scroller.scrollTo(hltdPhrases[nextPhraseIndex], {
-        duration: 100,
-        delay: 50,
-        smooth: true,
-        containerId: 'scroll-box'
-      })
-      currentPhraseIndex = nextPhraseIndex
+    hltdPhrases = this.props.hltdPhrases
+    if (hltdPhrases[0]) {
+      var nextPhraseIndex = currentHltdPhraseIndex + 1
+      if (nextPhraseIndex === hltdPhrases.length) {
+        nextPhraseIndex = 0
+      }
+      if (nextPhraseIndex > -1) {
+        scroller.scrollTo(hltdPhrases[nextPhraseIndex], {
+          duration: 200,
+          delay: 50,
+          smooth: true,
+          containerId: 'scroll-box'
+        })
+        currentHltdPhraseIndex = nextPhraseIndex
+      }
     }
   },
   toPrevHltdPhrase () {
-    var hltdPhrases = this.props.hltdPhrases
-    var prevPhraseIndex = currentPhraseIndex - 1
-    if (prevPhraseIndex <= -1) {
-      prevPhraseIndex = hltdPhrases.length - 1
+    hltdPhrases = this.props.hltdPhrases
+    if (hltdPhrases[0]) {
+      var prevPhraseIndex = currentHltdPhraseIndex - 1
+      if (prevPhraseIndex <= -1) {
+        prevPhraseIndex = hltdPhrases.length - 1
+      }
+      if (prevPhraseIndex >= 0) {
+        scroller.scrollTo(hltdPhrases[prevPhraseIndex], {
+          duration: 200,
+          delay: 50,
+          smooth: true,
+          containerId: 'scroll-box'
+        })
+        currentHltdPhraseIndex = prevPhraseIndex
+      }
     }
-    if (prevPhraseIndex >= 0) {
-      scroller.scrollTo(hltdPhrases[prevPhraseIndex], {
-        duration: 100,
-        delay: 50,
-        smooth: true,
-        containerId: 'scroll-box'
-      })
-      currentPhraseIndex = prevPhraseIndex
+  },
+  videoTimer (currentSeconds) {
+    let transcript = this.state.transcript
+    for (let i = 0; i < transcript.length; i++) {
+      let phraseElement = document.querySelectorAll(`[name="phrase${i}"]`)[0]
+      let prevPhraseElement = document.querySelectorAll(`[name="phrase${i - 1}"]`)[0]
+      let phraseStart = Math.floor(transcript[i].start[0])
+      let phraseDuration = Math.floor(transcript[i].dur[0])
+
+      if ((currentSeconds >= phraseStart) && (currentSeconds <= phraseStart + phraseDuration)) {
+        if (phraseElement.className === 'phrase') {
+          phraseElement.className = 'phrase is-active'
+          if (prevPhraseElement) {
+            if (prevPhraseElement.className === 'phrase is-active') {
+              prevPhraseElement.className = 'phrase'
+            }
+          }
+          scroller.scrollTo(`phrase${i}`, {
+            duration: 700,
+            delay: 0,
+            smooth: true,
+            offset: -100,
+            containerId: 'scroll-box'
+          })
+        }
+      } else if (phraseElement.className === 'phrase is-active') {
+        phraseElement.className = 'phrase'
+      }
     }
   },
   render () {
-    var transcript = this.state.transcript.map((phrase, i) => {
+    transcript = this.state.transcript.map((phrase, i) => {
       let startSeconds = phrase.start[0]
       let date = new Date(null)
       date.setSeconds(startSeconds)
@@ -103,6 +138,7 @@ const YoutubeSubs = React.createClass({
         >
           <FlatButton
             fullWidth
+            id='phrase-btn'
             className='phrase-btn'
             onClick={() => this.seekTo(startSeconds)}
           >

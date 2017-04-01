@@ -14,13 +14,17 @@ const MainContent = React.createClass({
   },
   getInitialState () {
     return {
-      seekTo: ' '
+      seekTo: ' ',
+      videoTimer: ' '
     }
   },
   seekTo (startSeconds) {
     this.setState({
       seekTo: startSeconds
     })
+  },
+  videoTimer (seconds) {
+    this.input.videoTimer(seconds)
   },
   render () {
     const { match } = this.props
@@ -29,10 +33,12 @@ const MainContent = React.createClass({
         <VideoContainer
           params={match.params.id}
           seekTo={this.state.seekTo}
+          videoTimer={this.videoTimer}
         />
         <SubsContainer
           params={match.params.id}
           seekTo={this.seekTo}
+          ref={(input) => { this.input = input }}
         />
       </div>
     )

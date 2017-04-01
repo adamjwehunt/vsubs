@@ -40,14 +40,22 @@ const SubsTools = React.createClass({
               onChange={this._onChange}
             />
             <IconButton
-              onClick={this.props.toNextHltdPhrase}
               className='arrow'
+              onClick={() => {
+                if (this.state.searchSubs) {
+                  this.props.toNextHltdPhrase()
+                }
+              }}
             >
-              <i className='material-icons arrow'>keyboard_arrow_down</i>
+              <i className='material-icons'>keyboard_arrow_down</i>
             </IconButton>
             <IconButton
-              onClick={this.props.toPrevHltdPhrase}
               className='arrow'
+              onClick={() => {
+                if (this.state.searchSubs) {
+                  this.props.toPrevHltdPhrase()
+                }
+              }}
             >
               <i className='material-icons'>keyboard_arrow_up</i>
             </IconButton>

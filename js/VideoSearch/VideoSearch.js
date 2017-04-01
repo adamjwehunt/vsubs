@@ -8,6 +8,7 @@ const { string, shape, func } = React.PropTypes
 
 injectTapEventPlugin()
 const googleAutoSuggestURL = `//suggestqueries.google.com/complete/search?client=youtube&ds=yt&q=`
+var dataSource = []
 
 const VideoSearch = React.createClass({
   propTypes: {
@@ -18,7 +19,6 @@ const VideoSearch = React.createClass({
   },
   getInitialState () {
     return {
-      dataSource: [],
       inputValue: ''
     }
   },
@@ -32,7 +32,6 @@ const VideoSearch = React.createClass({
     }
   },
   performSearch () {
-    const self = this
     const url = googleAutoSuggestURL + this.state.inputValue
     if (this.state.inputValue !== '') {
       JSONP(url, function (error, data) {
@@ -42,9 +41,7 @@ const VideoSearch = React.createClass({
         retrievedSearchTerms = searchResults.map(function (result) {
           return result[0]
         })
-        self.setState({
-          dataSource: retrievedSearchTerms
-        })
+        dataSource = retrievedSearchTerms
       })
     }
   },
@@ -70,9 +67,9 @@ const VideoSearch = React.createClass({
         if (error) return console.log(error)
         self.props.callback(results.items, searchTerm)
         self.setState({
-          dataSource: [],
           inputValue: ''
         })
+        dataSource = []
       })
     }
   },
@@ -82,7 +79,7 @@ const VideoSearch = React.createClass({
         <AutoComplete
           className='search-input'
           hintText='Search Youtube'
-          dataSource={this.state.dataSource}
+          dataSource={dataSource}
           onUpdateInput={this.onUpdateInput}
           onNewRequest={this.onNewRequest}
         />

@@ -1,9 +1,11 @@
 import React from 'react'
-import Paper from 'material-ui/Paper'
 import SubsTools from '../SubsTools/SubsTools'
 import YoutubeSubs from '../YoutubeSubs/YoutubeSubs'
+// import Resizable from 'react-resizable-box'
 import './SubsContainer.css'
 const { string, func } = React.PropTypes
+
+var subtitles, subsType
 
 const SubsContainer = React.createClass({
   propTypes: {
@@ -22,18 +24,18 @@ const SubsContainer = React.createClass({
     })
   },
   toNextHltdPhrase () {
-    this.foo.toNextHltdPhrase()
+    this.input.toNextHltdPhrase()
   },
   toPrevHltdPhrase () {
-    this.foo.toPrevHltdPhrase()
+    this.input.toPrevHltdPhrase()
   },
-  componentDidMount () {
+  videoTimer (seconds) {
+    this.input.videoTimer(seconds)
   },
   render () {
     const { params, seekTo } = this.props
     const { searchSubsResults } = this.state
-    var subtitles
-    var subsType = params.substr(0, 3)
+    subsType = params.substr(0, 3)
     if (subsType === 'yt:') {
       subtitles = (
         <YoutubeSubs
@@ -41,20 +43,18 @@ const SubsContainer = React.createClass({
           seekTo={seekTo}
           subs={searchSubsResults}
           hltdPhrases={[]}
-          ref={(foo) => { this.foo = foo }}
+          ref={(input) => { this.input = input }}
         />
       )
     }
     return (
       <div className='subs-container' id='subs-container'>
-        <Paper zDepth={3}>
-          <SubsTools
-            searchSubs={this.searchSubs}
-            toNextHltdPhrase={this.toNextHltdPhrase}
-            toPrevHltdPhrase={this.toPrevHltdPhrase}
+        <SubsTools
+          searchSubs={this.searchSubs}
+          toNextHltdPhrase={this.toNextHltdPhrase}
+          toPrevHltdPhrase={this.toPrevHltdPhrase}
           />
-          {subtitles}
-        </Paper>
+        {subtitles}
       </div>
     )
   }

@@ -1,22 +1,25 @@
 import React from 'react'
 import YoutubePlayer from '../YoutubePlayer/YoutubePlayer'
 import './VideoContainer.css'
-const { string } = React.PropTypes
+const { string, func } = React.PropTypes
+
+var video, videoType
 
 const VideoContainer = React.createClass({
   propTypes: {
     params: string,
-    seekTo: string
+    seekTo: string,
+    videoTimer: func
   },
   render () {
-    const { params, seekTo } = this.props
-    var video
-    var videoType = params.substr(0, 3)
+    const { params, seekTo, videoTimer } = this.props
+    videoType = params.substr(0, 3)
     if (videoType === 'yt:') {
       video = (
         <YoutubePlayer
           id={params.slice(3)}
           seekTo={seekTo}
+          videoTimer={videoTimer}
         />
       )
     }

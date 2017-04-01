@@ -27,6 +27,6 @@
   user-select: none!important;          /* Likely future */
 }
 
-.active {
-  background-color: #333;
+.is-active {
+  background-color: rgba(153, 153, 153, 0.2);
 }
