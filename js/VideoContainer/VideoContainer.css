@@ -1,8 +1,21 @@
+.theatre {
+  position: relative;
+  height: calc(100vh - 336px);
+  background: black;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
 .video-wrap {
-  padding-top: 3%;
-  width: 94%;
   max-width: 640px;
-  margin: 0 auto;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: auto;
 }
 
 .video-container {
@@ -11,7 +24,6 @@
 	padding-top:30px;
 	height:0;
 	overflow:hidden;
-  background: #000!important;
 }
 
 .video-container iframe, .video-container object, .video-container embed {

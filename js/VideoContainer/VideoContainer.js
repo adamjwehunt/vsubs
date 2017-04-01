@@ -1,26 +1,35 @@
 import React from 'react'
 import YoutubePlayer from '../YoutubePlayer/YoutubePlayer'
-import Paper from 'material-ui/Paper'
 import './VideoContainer.css'
-const { string } = React.PropTypes
+const { string, func } = React.PropTypes
+
+var video, videoType
 
 const VideoContainer = React.createClass({
   propTypes: {
-    params: string
+    params: string,
+    seekTo: string,
+    videoTimer: func
   },
   render () {
-    var video
-    var videoType = this.props.params.substr(0, 3)
+    const { params, seekTo, videoTimer } = this.props
+    videoType = params.substr(0, 3)
     if (videoType === 'yt:') {
       video = (
-        <YoutubePlayer id={this.props.params.slice(3)} />
+        <YoutubePlayer
+          id={params.slice(3)}
+          seekTo={seekTo}
+          videoTimer={videoTimer}
+        />
       )
     }
     return (
-      <div className='video-wrap'>
-        <Paper className='video-container' zDepth={3}>
-          {video}
-        </Paper>
+      <div className='theatre'>
+        <div className='video-wrap'>
+          <div className='video-container'>
+            {video}
+          </div>
+        </div>
       </div>
     )
   }

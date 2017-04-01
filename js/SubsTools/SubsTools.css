@@ -1,3 +1,11 @@
 .sub-controls {
-  height: 44px !important;
+  height: 36px !important;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.arrow {
+  padding: 0!important;
+  width: 40px!important;
 }
