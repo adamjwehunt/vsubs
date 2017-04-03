@@ -14,9 +14,14 @@ const Navbar = React.createClass({
       <div className='navbar'>
         <AppBar
           className='appbar'
-          title='vSubs'
           showMenuIconButton={false}
           >
+          <div className='logo-wrap'>
+            <h1>
+              <span className='appbar-vee'>v</span>
+              <span className='appbar-subs'>subs</span>
+            </h1>
+          </div>
           <Route component={(props) =>
             <VideoSearch {...props}
               apiKey={config.youtubeApiKey}

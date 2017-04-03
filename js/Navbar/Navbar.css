@@ -1,26 +1,70 @@
-.navbar h1 {
+/*.navbar h1 {
   height: 38px!important;
   line-height: 45px!important;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   font-size: 18px!important;
-}
+}*/
 
 .navbar .search-input {
   height: 38px!important;
   margin-left: 8px!important;
-  width: 245px!important;
+  width: 220px!important;
   line-height: 12px!important;
 }
 
 .appbar {
   padding: 0px 5px 0px 5px!important;
+  height: 40px!important;
 }
 
 .appbar hr {
   bottom: 5px!important;
 }
+
+.logo-wrap {
+  position: absolute;
+  top: 3px;
+}
+
+.appbar h1 {
+	font-family: "Oswald", sans-serif;
+	font-size: 20px;
+  margin: 0px;
+}
+
+.appbar-vee {
+	letter-spacing: 1px;
+}
+
+.appbar-subs {
+  position: relative;
+  padding: 0 0px;
+  background-image: -webkit-linear-gradient(bottom, rgb(0, 151, 170) 22%, rgb(17, 204, 227) 61%);
+  background-image: -moz-linear-gradient(bottom, rgb(0, 151, 170) 22%, rgb(17, 204, 227) 61%);
+  background-image: -o-linear-gradient(bottom, rgb(0, 151, 170) 22%, rgb(17, 204, 227) 61%);
+  background-image: -ms-linear-gradient(bottom, rgb(0, 151, 170) 22%, rgb(17, 204, 227) 61%);
+  background-image: linear-gradient(bottom, rgb(0, 151, 170) 22%, rgb(17, 204, 227) 61%);
+  color: #fff;
+  letter-spacing: 0px;
+  text-shadow: 0 1px 0 #000;
+  border-radius: 50% / 12%;
+  box-shadow: 0px 5px 12px -5px rgba(0, 0, 0, 0.67);
+}
+
+.appbar-subs::before {
+	content: "subs";
+	line-height: 23px;
+	position: absolute;
+	top: 10%;
+	bottom: 10%;
+	right: -5%;
+	left: -0.5%;
+	background: inherit;
+	border-radius: 6% / 50%;
+}
+
 /*iphone6*/
 @media only screen
 and (min-device-width : 375px)

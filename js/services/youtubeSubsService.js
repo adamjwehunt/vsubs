@@ -36,7 +36,6 @@ export function getYoutubeSubs (videoid) {
         }
       }
     })
-    console.log(parsedSubs)
     return parsedSubs
   })
 }

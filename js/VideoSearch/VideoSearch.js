@@ -1,7 +1,8 @@
 import React from 'react'
 import AutoComplete from 'material-ui/AutoComplete'
-// import JSONP from 'jsonp'
+import IconButton from 'material-ui/IconButton'
 import injectTapEventPlugin from 'react-tap-event-plugin'
+// import JSONP from 'jsonp'
 // import YoutubeFinder from 'youtube-finder'
 import './VideoSearch.css'
 const { string, shape, func } = React.PropTypes
@@ -21,6 +22,11 @@ const VideoSearch = React.createClass({
     return {
       inputValue: ''
     }
+  },
+  onUpdateInput (inputValue) {
+    this.setState({
+      inputValue: inputValue
+    })
   },
   // onUpdateInput (inputValue) {
   //   if (this.isMounted()) {
@@ -74,6 +80,9 @@ const VideoSearch = React.createClass({
     //   })
     // }
   },
+  newSearch () {
+    this.onNewRequest(this.state.inputValue)
+  },
   render () {
     return (
       <div>
@@ -84,6 +93,12 @@ const VideoSearch = React.createClass({
           onUpdateInput={this.onUpdateInput}
           onNewRequest={this.onNewRequest}
         />
+        <IconButton
+          className='search-url'
+          onClick={this.newSearch}
+        >
+          <i className='material-icons'>search</i>
+        </IconButton>
       </div>
     )
   }

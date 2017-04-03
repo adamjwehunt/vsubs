@@ -1,3 +1,73 @@
-.home-wrap {
-  background: teal;
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+
+.welcome {
+  background: #eeedec;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+	text-align: center;
+  overflow: hidden;
+}
+
+.welcome h1 {
+	font-family: "Oswald", sans-serif;
+	font-size: 90px;
+}
+
+.vee {
+	letter-spacing: 10px;
+	text-shadow: 0 2px 0 white;
+}
+
+.subs {
+	position: relative;
+	padding: 0 15px;
+	background-image: -webkit-linear-gradient(bottom, rgb(0, 151, 170) 22%, rgb(17, 204, 227) 61%);
+	background-image: -moz-linear-gradient(bottom, rgb(0, 151, 170) 22%, rgb(17, 204, 227) 61%);
+	background-image: -o-linear-gradient(bottom, rgb(0, 151, 170) 22%, rgb(17, 204, 227) 61%);
+	background-image: -ms-linear-gradient(bottom, rgb(0, 151, 170) 22%, rgb(17, 204, 227) 61%);
+	background-image: linear-gradient(bottom, rgb(0, 151, 170) 22%, rgb(17, 204, 227) 61%);
+	color: #fff;
+	letter-spacing: -2px;
+	text-shadow: 0 3px 0 #000;
+	border-radius: 50% / 12%;
+	box-shadow: 0px 15px 20px -5px rgba(0, 0, 0, 0.67);
+}
+
+.subs::before {
+	content: "subs";
+	line-height: 103px;
+	position: absolute;
+	top: 10%;
+	bottom: 10%;
+	right: -5%;
+	left: -4.5%;
+	background: inherit;
+	border-radius: 6% / 50%;
+}
+
+.welcome-message {
+  max-width: 460px;
+  margin: auto;
+  padding: 0px 15px;
+}
+
+.welcome-message h2 {
+  margin-top: -50px;
+  margin-bottom: 50px;
+  font-style: italic;
+  color: #6d6d6c;
+  font-size: 21px;
+}
+
+.welcome-message h3 {
+  font-weight: 300;
+}
+
+.welcome-message h5 {
+  margin-top: 50px;
+  font-size: 14px;
+  color: #6d6d6c;
 }

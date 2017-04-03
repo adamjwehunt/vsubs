@@ -23,6 +23,12 @@
   padding: 0!important;
 }
 
-.about {
-  
+.about ul {
+  width: 180px;
+  padding: 10px 3px 10px 30px;
+  margin: 0px;
+}
+
+.about h3 {
+  margin: 5px;
 }
