@@ -112,7 +112,7 @@ const YoutubeSubs = React.createClass({
             duration: 700,
             delay: 0,
             smooth: true,
-            offset: -100,
+            offset: -72,
             containerId: 'scroll-box'
           })
         }

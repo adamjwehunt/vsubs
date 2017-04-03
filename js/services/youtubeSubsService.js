@@ -18,11 +18,25 @@ export function getYoutubeSubs (videoid) {
       if (err) {
         console.log(err)
       } else {
-        result.transcript.text.map((x) => { x.subtitle = htmlDecode(x.subtitle) })
-        parsedSubs = result
+        if (result) {
+          result.transcript.text.map((x) => { x.subtitle = htmlDecode(x.subtitle) })
+          parsedSubs = result
+        } else {
+          parsedSubs = {
+            transcript: {
+              text: [
+                {
+                  dur: ['0'],
+                  start: ['0'],
+                  subtitle: 'Sorry, no subtitles availabe at this time.'
+                }
+              ]
+            }
+          }
+        }
       }
     })
-
+    console.log(parsedSubs)
     return parsedSubs
   })
 }
