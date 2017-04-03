@@ -20,7 +20,7 @@ const Home = React.createClass({
             </h3>
             <h3>https://www.youtube.com/watch?v=9h_QtLol75I
             </h3>
-            <h5>Note: Vsubs only supports videos with user-submitted subtitles, auto-generated subtitles are coming soon!
+            <h5>Note: vSubs only supports videos with user-submitted subtitles, auto-generated subtitles are coming soon!
             </h5>
           </div>
         </div>
