@@ -1,5 +1,5 @@
 #scroll-box {
-  background: #f6f6f6;
+  background: #eeedec;
   position: relative;
   height: 284px;
   width: 100%;
@@ -50,7 +50,7 @@ and (max-device-width : 667px) {
 and (min-device-width : 768px)
 and (max-device-width : 1024px) {
   #scroll-box {
-    height: 534px;
+    height: 524px;
   }
 }
 /*retina ipad pro*/
@@ -136,3 +136,10 @@ and (min-resolution: 192dpi) {
     height: 234px;
   }
 }
+
+/*bigger screens*/
+/*@media only screen  and (min-width : 768px) {
+  #scroll-box {
+    height: 360px;
+  }
+}*/

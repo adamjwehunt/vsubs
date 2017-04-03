@@ -36,7 +36,6 @@ const SubsTools = React.createClass({
     })
   },
   handleTouchTap (event) {
-    console.log('clicked')
     event.preventDefault()
 
     this.setState({
@@ -93,11 +92,11 @@ const SubsTools = React.createClass({
             >
               <div className='about'>
                 <ul>
-                  vSubs beta
-                  <li>Created by Adam Wehunt</li>
-                  <li />
-                  <li />
-                  <li />
+                  <h3>vSubs Beta</h3>
+                  <li>Auto-generated subtitles support and other features coming soon!</li>
+                  <li>By Adam Wehunt</li>
+                  <li><a href='https://github.com/ajwehunt/vsubs' target='_blank' >Github</a></li>
+                  <li><a href='http://www.adamjwehunt.com' target='_blank' >Portfolio</a></li>
                 </ul>
               </div>
             </Popover>
