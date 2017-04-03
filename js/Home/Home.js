@@ -1,11 +1,6 @@
 import React from 'react'
 import './Home.css'
 
-const style = {
-  margin: 20,
-  textAlign: 'center'
-}
-
 const Home = React.createClass({
   render () {
     return (
