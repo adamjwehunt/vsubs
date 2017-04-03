@@ -1,7 +1,39 @@
 .navbar h1 {
-  height: 48px!important;
-  line-height: 60px!important;
-  -webkit-user-select: none;     
+  height: 38px!important;
+  line-height: 45px!important;
+  -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+  font-size: 18px!important;
+}
+
+.navbar .search-input {
+  height: 38px!important;
+  margin-left: 8px!important;
+  width: 245px!important;
+  line-height: 12px!important;
+}
+
+.appbar {
+  padding: 0px 5px 0px 5px!important;
+}
+
+.appbar hr {
+  bottom: 5px!important;
+}
+/*iphone6*/
+@media only screen
+and (min-device-width : 375px)
+and (max-device-width : 667px) {
+  .appbar {
+    padding: 0px 10px 0px 10px!important;
+  }
+}
+/*ipad*/
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px) {
+  .appbar {
+      padding: 0px 16px 0px 16px!important;
+  }
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import TextField from 'material-ui/TextField'
 import { Toolbar, ToolbarGroup } from 'material-ui/Toolbar'
 import IconButton from 'material-ui/IconButton'
+import Popover from 'material-ui/Popover'
 import './SubsTools.css'
 const { func } = React.PropTypes
 
@@ -13,13 +14,9 @@ const SubsTools = React.createClass({
   },
   getInitialState () {
     return {
-      searchSubs: ''
+      searchSubs: '',
+      open: false
     }
-  },
-  _onChange (event) {
-    this.setState({
-      searchSubs: event.target.value
-    })
   },
   componentDidUpdate (previousProps, previousState) {
     const { searchSubs } = this.state
@@ -28,6 +25,25 @@ const SubsTools = React.createClass({
       this.props.searchSubs(searchWords)
     }
   },
+  _onChange (event) {
+    this.setState({
+      searchSubs: event.target.value
+    })
+  },
+  handleRequestClose () {
+    this.setState({
+      open: false
+    })
+  },
+  handleTouchTap (event) {
+    console.log('clicked')
+    event.preventDefault()
+
+    this.setState({
+      open: true,
+      anchorEl: event.currentTarget
+    })
+  },
   render () {
     const { searchSubs } = this.state
     return (
@@ -35,6 +51,7 @@ const SubsTools = React.createClass({
         <Toolbar className='sub-controls'>
           <ToolbarGroup>
             <TextField
+              className='search-subs-input'
               hintText='Search Subtitles'
               value={searchSubs}
               onChange={this._onChange}
@@ -61,7 +78,29 @@ const SubsTools = React.createClass({
             </IconButton>
           </ToolbarGroup>
           <ToolbarGroup>
-            <i className='material-icons'>menu</i>
+            <IconButton
+              className='ham-menu'
+              onTouchTap={this.handleTouchTap}
+            >
+              <i className='material-icons'>menu</i>
+            </IconButton>
+            <Popover
+              open={this.state.open}
+              anchorEl={this.state.anchorEl}
+              anchorOrigin={{'horizontal': 'left', 'vertical': 'bottom'}}
+              targetOrigin={{'horizontal': 'right', 'vertical': 'center'}}
+              onRequestClose={this.handleRequestClose}
+            >
+              <div className='about'>
+                <ul>
+                  vSubs beta
+                  <li>Created by Adam Wehunt</li>
+                  <li />
+                  <li />
+                  <li />
+                </ul>
+              </div>
+            </Popover>
           </ToolbarGroup>
         </Toolbar>
       </div>

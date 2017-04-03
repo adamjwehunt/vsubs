@@ -1,7 +1,7 @@
 #scroll-box {
   background: #f6f6f6;
   position: relative;
-  height: 300px;
+  height: 284px;
   width: 100%;
   overflow-y: scroll;
 }
@@ -29,4 +29,110 @@
 
 .is-active {
   background-color: rgba(153, 153, 153, 0.2);
+}
+
+
+/*media queries*/
+
+
+/*portrait*/
+
+/*iphone 6*/
+@media only screen
+and (min-device-width : 375px)
+and (max-device-width : 667px) {
+  #scroll-box {
+    height: 324px;
+  }
+}
+/*ipad*/
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px) {
+  #scroll-box {
+    height: 534px;
+  }
+}
+/*retina ipad pro*/
+@media only screen
+and (min-device-width : 1024px)
+and (max-device-width : 1366px)
+and (orientation : portrait)
+and (-webkit-min-device-pixel-ratio: 2) {
+  #scroll-box {
+    height: 768px;
+  }
+}
+
+
+/*landscape*/
+/*ipone 5*/
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 568px)
+and (orientation : landscape)  {
+  #scroll-box {
+    height: 246px;
+  }
+}
+/*iphone 6*/
+@media only screen
+and (min-device-width : 375px)
+and (max-device-width : 667px)
+and (orientation : landscape) {
+  #scroll-box {
+    height: 246px;
+  }
+}
+
+/*ipad*/
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : landscape) {
+  #scroll-box {
+    height: 267px;
+  }
+}
+
+/*ipad pro retina*/
+@media only screen
+and (min-device-width : 1366px)
+and (min-device-height : 1024px)
+and (orientation : landscape)
+and (-webkit-min-device-pixel-ratio: 2) {
+  #scroll-box {
+    height: 360px;
+  }
+}
+
+
+/*laptop*/
+@media only screen
+and (min-device-width : 1440px)
+and (min-device-height : 900px)
+and (orientation : landscape)
+and (-webkit-min-device-pixel-ratio: 2) {
+  #scroll-box {
+    height: 234px;
+  }
+}
+
+@media screen
+and (min-device-width: 1200px)
+and (max-device-width: 1600px)
+and (-webkit-min-device-pixel-ratio: 1) {
+  #scroll-box {
+    height: 360px;
+  }
+}
+
+@media screen
+and (min-device-width: 1200px)
+and (max-device-width: 1600px)
+and (-webkit-min-device-pixel-ratio: 2)
+and (min-resolution: 192dpi) {
+  #scroll-box {
+    height: 234px;
+  }
 }
