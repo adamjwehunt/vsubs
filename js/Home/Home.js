@@ -16,10 +16,11 @@ const Home = React.createClass({
             <h2>Interactive Transcripts for Youtube
             </h2>
             <h3>Get started by entering a video URL up top.
-              Need help? go ahead and paste this cat video in:
+              <br />
+              Need help? Copy/paste this cat video:
             </h3>
-            <h3>https://www.youtube.com/watch?v=9h_QtLol75I
-            </h3>
+            <h4>https://www.youtube.com/watch?v=9h_QtLol75I
+            </h4>
             <h5>Note: vSubs only supports videos with user-submitted subtitles, auto-generated subtitles are coming soon!
             </h5>
           </div>

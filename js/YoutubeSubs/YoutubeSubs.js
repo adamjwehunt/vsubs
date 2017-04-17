@@ -4,6 +4,7 @@ import FlatButton from 'material-ui/FlatButton'
 import Highlighter from 'react-highlight-words'
 import Scroll from 'react-scroll'
 import latinize from 'latinize'
+import Resizable from 'react-resizable-box'
 import './YoutubeSubs.css'
 const { string, func, array } = React.PropTypes
 
@@ -121,6 +122,39 @@ const YoutubeSubs = React.createClass({
       }
     }
   },
+  onSubsResizeStart () {
+    let activeElmts = document.getElementsByClassName('phrase-text')
+    for (let i = 0; i < activeElmts.length; i++) {
+      activeElmts[i].className = 'phrase-text resize-active'
+    }
+  },
+  onSubsResizeStop () {
+    let activeElmts = document.getElementsByClassName('phrase-text')
+    for (let i = 0; i < activeElmts.length; i++) {
+      activeElmts[i].className = 'phrase-text'
+    }
+  },
+  resizableHeight () {
+    let width = window.innerWidth
+    let height = window.innerHeight
+    if (width <= 320 && height <= 568) {
+      return 272
+    } else if (width <= 360 && height <= 667) {
+      return 322
+    } else if (width <= 375) {
+      return 340
+    } else if (width <= 412 && height <= 732) {
+      return 300
+    } else if (width <= 414 && height <= 736) {
+      return 385
+    } else if (width <= 768 && height <= 1024) {
+      return 490
+    } else if (width <= 1440 && height <= 900) {
+      return 224
+    } else {
+      return 280
+    }
+  },
   render () {
     transcript = this.state.transcript.map((phrase, i) => {
       let startSeconds = phrase.start[0]
@@ -159,11 +193,20 @@ const YoutubeSubs = React.createClass({
       )
     })
     return (
-      <div>
+      <Resizable
+        className='resizable-subs'
+        enable={{top: true, right: false, bottom: false, left: false, topRight: false, bottomRight: false, bottomLeft: false, topLeft: false}}
+        minWidth={'100%'}
+        height={this.resizableHeight()}
+        bounds={'parent'}
+        onResizeStart={this.onSubsResizeStart}
+        onResizeStop={this.onSubsResizeStop}
+        handlerClasses={{top: 'resize-btn material-icons'}}
+        >
         <div id='scroll-box'>
           {transcript}
         </div>
-      </div>
+      </Resizable>
     )
   }
 })
