@@ -14,7 +14,7 @@
 
 .welcome h1 {
 	font-family: "Oswald", sans-serif;
-	font-size: 90px;
+	font-size: 76px;
 }
 
 .vee {
@@ -39,7 +39,7 @@
 
 .subs::before {
 	content: "subs";
-	line-height: 103px;
+  line-height: 88px;
 	position: absolute;
 	top: 10%;
 	bottom: 10%;
@@ -56,16 +56,20 @@
 }
 
 .welcome-message h2 {
-  margin-top: -40px;
-  margin-bottom: 40px;
-  font-style: italic;
+  margin-top: -43px;
+  margin-bottom: 27px;
   color: #6d6d6c;
-  font-size: 21px;
+  font-size: 19px;
 }
 
 .welcome-message h3 {
   font-weight: 300;
   font-size: 20px;
+  margin-bottom: 40px;
+}
+
+.welcome-message h4 {
+  font-size: 19px;
 }
 
 .welcome-message h5 {
