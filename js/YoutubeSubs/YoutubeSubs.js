@@ -135,7 +135,7 @@ const YoutubeSubs = React.createClass({
     var topOfSubsContainer = document.getElementsByClassName('subs-container')[0].offsetHeight + 36
 
     // if (topOfSubsContainer >= bottomOfIframe - 30) {
-    let diff = (window.innerHeight - topOfSubsContainer) - 20
+    let diff = (window.innerHeight - topOfSubsContainer) - 25
     document.getElementsByTagName('IFRAME')[0].style.height = diff.toString() + 'px'
     // }
   },
