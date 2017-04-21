@@ -122,11 +122,22 @@ const YoutubeSubs = React.createClass({
       }
     }
   },
-  onSubsResizeStart () {
+  onSubsResizeStart (e, dir) {
     let activeElmts = document.getElementsByClassName('phrase-text')
     for (let i = 0; i < activeElmts.length; i++) {
       activeElmts[i].className = 'phrase-text resize-active'
     }
+  },
+  onSubsResize () {
+    // console.log(window.innerHeight - document.getElementsByTagName('IFRAME')[0].offsetHeight - 30)
+    // console.log(document.getElementsByClassName('subs-container')[0].offsetHeight + 36)
+    // var bottomOfIframe = window.innerHeight - document.getElementsByTagName('IFRAME')[0].offsetHeight - 30
+    var topOfSubsContainer = document.getElementsByClassName('subs-container')[0].offsetHeight + 36
+
+    // if (topOfSubsContainer >= bottomOfIframe - 30) {
+    let diff = (window.innerHeight - topOfSubsContainer) - 25
+    document.getElementsByTagName('IFRAME')[0].style.height = diff.toString() + 'px'
+    // }
   },
   onSubsResizeStop () {
     let activeElmts = document.getElementsByClassName('phrase-text')
@@ -138,21 +149,21 @@ const YoutubeSubs = React.createClass({
     let width = window.innerWidth
     let height = window.innerHeight
     if (width <= 320 && height <= 568) {
-      return 272
+      return 262
     } else if (width <= 360 && height <= 667) {
-      return 322
+      return 311
     } else if (width <= 375) {
-      return 340
+      return 330
     } else if (width <= 412 && height <= 732) {
-      return 300
+      return 290
     } else if (width <= 414 && height <= 736) {
-      return 385
+      return 375
     } else if (width <= 768 && height <= 1024) {
-      return 490
+      return 480
     } else if (width <= 1440 && height <= 900) {
-      return 224
+      return 214
     } else {
-      return 280
+      return 270
     }
   },
   render () {
@@ -200,6 +211,7 @@ const YoutubeSubs = React.createClass({
         height={this.resizableHeight()}
         bounds={'parent'}
         onResizeStart={this.onSubsResizeStart}
+        onResize={this.onSubsResize}
         onResizeStop={this.onSubsResizeStop}
         handlerClasses={{top: 'resize-btn material-icons'}}
         >

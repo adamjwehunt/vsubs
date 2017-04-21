@@ -53,6 +53,9 @@ const YoutubePlayer = React.createClass({
       stopTimer()
     }
   },
+  test () {
+    console.log('test')
+  },
   render () {
     const opts = {
       height: '480',
@@ -68,6 +71,7 @@ const YoutubePlayer = React.createClass({
         videoId={this.props.id}
         onReady={this.onReady}
         onStateChange={this.onYoutubeStateChange}
+        onApiChange={this.test}
         opts={opts}
       />
     )
