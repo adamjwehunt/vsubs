@@ -1,14 +1,18 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 import AppBar from 'material-ui/AppBar'
 import VideoSearch from '../VideoSearch/VideoSearch'
 import config from '../../config'
 import './Navbar.css'
 
-const Navbar = React.createClass({
+class Navbar extends Component {
+  constructor (props) {
+    super(props)
+    this.yourCallback = this.yourCallback.bind(this)
+  }
   yourCallback (searchResults) {
     console.log('searchResults are: ', searchResults)
-  },
+  }
   render () {
     return (
       <div className='navbar'>
@@ -32,6 +36,6 @@ const Navbar = React.createClass({
       </div>
     )
   }
-})
+}
 
 export default Navbar

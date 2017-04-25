@@ -1,37 +1,35 @@
-import React from 'react'
+import React, { Component } from 'react'
 import SubsTools from '../SubsTools/SubsTools'
 import YoutubeSubs from '../YoutubeSubs/YoutubeSubs'
-// import Resizable from 'react-resizable-box'
 import './SubsContainer.css'
-const { string, func } = React.PropTypes
 
 var subtitles, subsType
 
-const SubsContainer = React.createClass({
-  propTypes: {
-    params: string,
-    seekTo: func,
-    searchSubs: func
-  },
-  getInitialState () {
-    return {
+class SubsContainer extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
       searchSubsResults: []
     }
-  },
+    this.searchSubs = this.searchSubs.bind(this)
+    this.toNextHltdPhrase = this.toNextHltdPhrase.bind(this)
+    this.toPrevHltdPhrase = this.toPrevHltdPhrase.bind(this)
+    this.videoTimer = this.videoTimer.bind(this)
+  }
   searchSubs (subsArray) {
     this.setState({
       searchSubsResults: subsArray
     })
-  },
+  }
   toNextHltdPhrase () {
     this.input.toNextHltdPhrase()
-  },
+  }
   toPrevHltdPhrase () {
     this.input.toPrevHltdPhrase()
-  },
+  }
   videoTimer (seconds) {
     this.input.videoTimer(seconds)
-  },
+  }
   render () {
     const { params, seekTo } = this.props
     const { searchSubsResults } = this.state
@@ -58,6 +56,12 @@ const SubsContainer = React.createClass({
       </div>
     )
   }
-})
+}
+
+SubsContainer.propTypes = {
+  params: React.PropTypes.string,
+  seekTo: React.PropTypes.func,
+  searchSubs: React.PropTypes.func
+}
 
 export default SubsContainer
