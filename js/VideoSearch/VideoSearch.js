@@ -1,33 +1,30 @@
-import React from 'react'
+import React, { Component } from 'react'
 import AutoComplete from 'material-ui/AutoComplete'
 import IconButton from 'material-ui/IconButton'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 // import JSONP from 'jsonp'
 // import YoutubeFinder from 'youtube-finder'
 import './VideoSearch.css'
-const { string, shape, func } = React.PropTypes
 
 injectTapEventPlugin()
 // const googleAutoSuggestURL = `//suggestqueries.google.com/complete/search?client=youtube&ds=yt&q=`
 var dataSource = []
 
-const VideoSearch = React.createClass({
-  propTypes: {
-    apiKey: string,
-    history: shape({
-      push: func
-    })
-  },
-  getInitialState () {
-    return {
+class VideoSearch extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
       inputValue: ''
     }
-  },
+    this.onUpdateInput = this.onUpdateInput.bind(this)
+    this.onNewRequest = this.onNewRequest.bind(this)
+    this.newSearch = this.newSearch.bind(this)
+  }
   onUpdateInput (inputValue) {
     this.setState({
       inputValue: inputValue
     })
-  },
+  }
   // onUpdateInput (inputValue) {
   //   if (this.isMounted()) {
   //     this.setState({
@@ -79,10 +76,10 @@ const VideoSearch = React.createClass({
     //     dataSource = []
     //   })
     // }
-  },
+  }
   newSearch () {
     this.onNewRequest(this.state.inputValue)
-  },
+  }
   render () {
     return (
       <div>
@@ -102,6 +99,12 @@ const VideoSearch = React.createClass({
       </div>
     )
   }
-})
+}
+
+VideoSearch.propTypes = {
+  apiKey: React.PropTypes.string,
+  history: React.PropTypes.object,
+  push: React.PropTypes.func
+}
 
 export default VideoSearch

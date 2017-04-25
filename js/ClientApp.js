@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { render } from 'react-dom'
 import { HashRouter as Router, Route } from 'react-router-dom'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
@@ -8,7 +8,7 @@ import MainContent from './MainContent/MainContent'
 import '../public/normalize.css'
 import '../public/style.css'
 
-const App = React.createClass({
+class App extends Component {
   render () {
     return (
       <Router>
@@ -32,6 +32,6 @@ const App = React.createClass({
       </Router>
     )
   }
-})
+}
 
 render(<App />, document.getElementById('app'))

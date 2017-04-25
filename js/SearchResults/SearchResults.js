@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-const SearchResults = React.createClass({
+class SearchResults extends Component {
   render () {
     return (
       <div />
     )
   }
-})
+}
 
 export default SearchResults

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { getYoutubeSubs } from '../services/youtubeSubsService.js'
 import FlatButton from 'material-ui/FlatButton'
 import Highlighter from 'react-highlight-words'
@@ -6,31 +6,33 @@ import Scroll from 'react-scroll'
 import latinize from 'latinize'
 import Resizable from 'react-resizable-box'
 import './YoutubeSubs.css'
-const { string, func, array } = React.PropTypes
 
 var Element = Scroll.Element
 var scroller = Scroll.scroller
 var currentHltdPhraseIndex, hltdElements, hltdPhrases, transcript
 
-const YoutubeSubs = React.createClass({
-  propTypes: {
-    id: string,
-    seekTo: func,
-    subs: array,
-    hltdPhrases: array
-  },
-  getInitialState () {
-    return {
+class YoutubeSubs extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
       transcript: []
     }
-  },
+    this.seekTo = this.seekTo.bind(this)
+    this.toNextHltdPhrase = this.toNextHltdPhrase.bind(this)
+    this.toPrevHltdPhrase = this.toPrevHltdPhrase.bind(this)
+    this.videoTimer = this.videoTimer.bind(this)
+    this.onSubsResizeStart = this.onSubsResizeStart.bind(this)
+    this.onSubsResize = this.onSubsResize.bind(this)
+    this.onSubsResizeStop = this.onSubsResizeStop.bind(this)
+    this.resizableHeight = this.resizableHeight.bind(this)
+  }
   componentDidMount () {
     getYoutubeSubs(this.props.id).then(res => {
       this.setState({
         transcript: res.transcript.text
       })
     })
-  },
+  }
   componentWillReceiveProps (nextProps) {
     if (this.props.id !== nextProps.id) {
       getYoutubeSubs(nextProps.id).then(res => {
@@ -39,7 +41,7 @@ const YoutubeSubs = React.createClass({
         })
       })
     }
-  },
+  }
   componentDidUpdate () {
     hltdElements = document.body.querySelectorAll('.highlighted')
     if (hltdElements.length) {
@@ -53,10 +55,10 @@ const YoutubeSubs = React.createClass({
       }
       this.props.hltdPhrases.push(...hltdPhrases)
     }
-  },
+  }
   seekTo (startSeconds) {
     this.props.seekTo(startSeconds)
-  },
+  }
   toNextHltdPhrase () {
     hltdPhrases = this.props.hltdPhrases
     if (hltdPhrases[0]) {
@@ -74,7 +76,7 @@ const YoutubeSubs = React.createClass({
         currentHltdPhraseIndex = nextPhraseIndex
       }
     }
-  },
+  }
   toPrevHltdPhrase () {
     hltdPhrases = this.props.hltdPhrases
     if (hltdPhrases[0]) {
@@ -92,7 +94,7 @@ const YoutubeSubs = React.createClass({
         currentHltdPhraseIndex = prevPhraseIndex
       }
     }
-  },
+  }
   videoTimer (currentSeconds) {
     let transcript = this.state.transcript
     for (let i = 0; i < transcript.length; i++) {
@@ -100,7 +102,6 @@ const YoutubeSubs = React.createClass({
       let prevPhraseElement = document.querySelectorAll(`[name="phrase${i - 1}"]`)[0]
       let phraseStart = Math.floor(transcript[i].start[0])
       let phraseDuration = Math.floor(transcript[i].dur[0])
-
       if ((currentSeconds >= phraseStart) && (currentSeconds <= phraseStart + phraseDuration)) {
         if (phraseElement.className === 'phrase') {
           phraseElement.className = 'phrase is-active'
@@ -121,30 +122,29 @@ const YoutubeSubs = React.createClass({
         phraseElement.className = 'phrase'
       }
     }
-  },
+  }
   onSubsResizeStart (e, dir) {
     let activeElmts = document.getElementsByClassName('phrase-text')
     for (let i = 0; i < activeElmts.length; i++) {
       activeElmts[i].className = 'phrase-text resize-active'
     }
-  },
+  }
   onSubsResize () {
     // console.log(window.innerHeight - document.getElementsByTagName('IFRAME')[0].offsetHeight - 30)
     // console.log(document.getElementsByClassName('subs-container')[0].offsetHeight + 36)
     // var bottomOfIframe = window.innerHeight - document.getElementsByTagName('IFRAME')[0].offsetHeight - 30
     var topOfSubsContainer = document.getElementsByClassName('subs-container')[0].offsetHeight + 36
-
     // if (topOfSubsContainer >= bottomOfIframe - 30) {
-    let diff = (window.innerHeight - topOfSubsContainer) - 25
+    let diff = (window.innerHeight - topOfSubsContainer) - 30
     document.getElementsByTagName('IFRAME')[0].style.height = diff.toString() + 'px'
     // }
-  },
+  }
   onSubsResizeStop () {
     let activeElmts = document.getElementsByClassName('phrase-text')
     for (let i = 0; i < activeElmts.length; i++) {
       activeElmts[i].className = 'phrase-text'
     }
-  },
+  }
   resizableHeight () {
     let width = window.innerWidth
     let height = window.innerHeight
@@ -165,7 +165,7 @@ const YoutubeSubs = React.createClass({
     } else {
       return 270
     }
-  },
+  }
   render () {
     transcript = this.state.transcript.map((phrase, i) => {
       let startSeconds = phrase.start[0]
@@ -221,6 +221,13 @@ const YoutubeSubs = React.createClass({
       </Resizable>
     )
   }
-})
+}
+
+YoutubeSubs.propTypes = {
+  id: React.PropTypes.string,
+  seekTo: React.PropTypes.func,
+  subs: React.PropTypes.array,
+  hltdPhrases: React.PropTypes.array
+}
 
 export default YoutubeSubs

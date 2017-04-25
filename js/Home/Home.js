@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { Component } from 'react'
 import './Home.css'
 
-const Home = React.createClass({
+class Home extends Component {
   render () {
     return (
       <div className='home-wrap'>
@@ -28,6 +28,6 @@ const Home = React.createClass({
       </div>
     )
   }
-})
+}
 
 export default Home

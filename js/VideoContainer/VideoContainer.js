@@ -1,16 +1,10 @@
-import React from 'react'
+import React, { Component } from 'react'
 import YoutubePlayer from '../YoutubePlayer/YoutubePlayer'
 import './VideoContainer.css'
-const { string, func } = React.PropTypes
 
 var video, videoType
 
-const VideoContainer = React.createClass({
-  propTypes: {
-    params: string,
-    seekTo: string,
-    videoTimer: func
-  },
+class VideoContainer extends Component {
   render () {
     const { params, seekTo, videoTimer } = this.props
     videoType = params.substr(0, 3)
@@ -33,6 +27,12 @@ const VideoContainer = React.createClass({
       </div>
     )
   }
-})
+}
+
+VideoContainer.propTypes = {
+  params: React.PropTypes.string,
+  seekTo: React.PropTypes.string,
+  videoTimer: React.PropTypes.func
+}
 
 export default VideoContainer

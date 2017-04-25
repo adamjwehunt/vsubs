@@ -1,31 +1,26 @@
-import React from 'react'
+import React, { Component } from 'react'
 import VideoContainer from '../VideoContainer/VideoContainer'
 import SubsContainer from '../SubsContainer/SubsContainer'
 import './MainContent.css'
-const { shape, string } = React.PropTypes
 
-const MainContent = React.createClass({
-  propTypes: {
-    match: shape({
-      params: shape({
-        id: string
-      })
-    })
-  },
-  getInitialState () {
-    return {
+class MainContent extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
       seekTo: ' ',
       videoTimer: ' '
     }
-  },
+    this.seekTo = this.seekTo.bind(this)
+    this.videoTimer = this.videoTimer.bind(this)
+  }
   seekTo (startSeconds) {
     this.setState({
       seekTo: startSeconds
     })
-  },
+  }
   videoTimer (seconds) {
     this.input.videoTimer(seconds)
-  },
+  }
   render () {
     const { match } = this.props
     return (
@@ -43,6 +38,12 @@ const MainContent = React.createClass({
       </div>
     )
   }
-})
+}
+
+MainContent.propTypes = {
+  match: React.PropTypes.object,
+  params: React.PropTypes.object,
+  id: React.PropTypes.string
+}
 
 export default MainContent

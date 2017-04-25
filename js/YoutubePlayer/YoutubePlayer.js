@@ -1,30 +1,28 @@
-import React from 'react'
+import React, { Component } from 'react'
 import YouTube from 'react-youtube'
-const { string } = React.PropTypes
 import './YoutubePlayer.css'
 
 var currentTime, stopTimer, startTimer, timer
 
-const YoutubePlayer = React.createClass({
-  propTypes: {
-    id: string,
-    seekTo: string
-  },
-  getInitialState () {
-    return {
+class YoutubePlayer extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
       seek: () => {}
     }
-  },
+    this.onReady = this.onReady.bind(this)
+    this.onYoutubeStateChange = this.onYoutubeStateChange.bind(this)
+  }
   componentWillReceiveProps (nextProps) {
     this.state.seek(nextProps.seekTo)
-  },
+  }
   onReady (event) {  // on video ready => initialize Seek method
     this.setState({
       seek: (seekSpot) => {
         event.target.seekTo(parseInt(seekSpot))
       }
     })
-  },
+  }
   onYoutubeStateChange (event) {  // on video state change => set timer
     var _this = this
     if (startTimer) {
@@ -52,10 +50,7 @@ const YoutubePlayer = React.createClass({
     } else if (event.data === 5) {  // Video Cued
       stopTimer()
     }
-  },
-  test () {
-    console.log('test')
-  },
+  }
   render () {
     const opts = {
       height: '480',
@@ -71,11 +66,15 @@ const YoutubePlayer = React.createClass({
         videoId={this.props.id}
         onReady={this.onReady}
         onStateChange={this.onYoutubeStateChange}
-        onApiChange={this.test}
         opts={opts}
       />
     )
   }
-})
+}
+
+YoutubePlayer.propTypes = {
+  id: React.PropTypes.string,
+  seekTo: React.PropTypes.string
+}
 
 export default YoutubePlayer
